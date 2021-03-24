@@ -2,6 +2,7 @@ basecalled_dir: "data/00_basecalled_data"
 results_dir: "data"
 canu_dir: "canu/canu-1.8/Linux-amd64/bin"
 kraken_db: "db/NCBI-bacteria"
+threads_kraken: 8
 barcodes: "repBC01 repBC02 repBC03 repBC04 repBC05 repBC06 repBC07 repBC08 repBC09 repBC10 
           repBC100 repBC101 repBC102 repBC103 repBC104 repBC105 repBC106 repBC107 repBC108 repBC109 
           repBC11 repBC110 repBC111 repBC112 repBC113 repBC114 repBC115 repBC116 repBC117 repBC118 

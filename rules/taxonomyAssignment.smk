@@ -8,6 +8,7 @@ rule taxonomyAssignment:
 		consensus=OUTPUT_DIR + "/03_LCPs_peaks/00_peak_consensus",
 		taxonomy=OUTPUT_DIR + "/03_LCPs_peaks/01_taxonomic_assignments", 
 		taxonomy_final=OUTPUT_DIR + "/03_LCPs_peaks/01_taxonomic_assignments/taxonomy_assignments.txt"
+	threads: config["threads_kraken"]
 	shell:
 		"""
 		mkdir -p {params.taxonomy}
@@ -19,7 +20,7 @@ rule taxonomyAssignment:
 				cat {params.consensus}/$line.fasta >> {output.merged}
 			fi
 		done
-		kraken2 --db {config[kraken_db]} {output.merged} --use-names > {output.taxonomy} || true 
+		kraken2 --db {config[kraken_db]} --threads {threads} {output.merged} --use-names > {output.taxonomy} || true 
 		touch {output.taxonomy}
 		touch {output.merged}
 		awk -F '\t' '{{print FILENAME " " $3}}' {output.taxonomy} | sort | uniq -c | sort -nr >> {params.taxonomy_final} 
