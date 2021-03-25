@@ -33,7 +33,6 @@ def aggregate_input2(wildcards):
 
 rule checkOutputs:
 	input:
-		#expand(OUTPUT_DIR + "/03_LCPs_peaks/01_taxonomic_assignments/taxonomy_{barcode}.txt", barcode=BARCODES)
 	    aggregate_input2
 	output:
 		protected(OUTPUT_DIR + "/check.txt")

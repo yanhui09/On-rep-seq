@@ -5,22 +5,3 @@ guppy_dir: "guppy/bin"
 threads_guppy: 8
 kraken_db: "db/NCBI-bacteria"
 threads_kraken: 8
-#barcodes: "repBC01 repBC02 repBC03 repBC04 repBC05 repBC06 repBC07 repBC08 repBC09 repBC10 
-#          repBC100 repBC101 repBC102 repBC103 repBC104 repBC105 repBC106 repBC107 repBC108 repBC109 
-#          repBC11 repBC110 repBC111 repBC112 repBC113 repBC114 repBC115 repBC116 repBC117 repBC118 
-#          repBC119 repBC12 repBC120 repBC121 repBC122 repBC123 repBC124 repBC125 repBC126 repBC127 
-#          repBC128 repBC129 repBC13 repBC130 repBC131 repBC132 repBC133 repBC134 repBC135 repBC136 
-#          repBC137 repBC138 repBC139 repBC14 repBC140 repBC141 repBC142 repBC143 repBC144 repBC145 
-#          repBC146 repBC147 repBC148 repBC149 repBC15 repBC150 repBC151 repBC152 repBC153 repBC154 
-#          repBC155 repBC156 repBC157 repBC158 repBC159 repBC16 repBC160 repBC161 repBC162 repBC163 
-#          repBC164 repBC165 repBC166 repBC167 repBC168 repBC169 repBC17 repBC170 repBC171 repBC172 
-#          repBC173 repBC174 repBC175 repBC176 repBC177 repBC178 repBC179 repBC18 repBC180 repBC181 
-#          repBC182 repBC183 repBC184 repBC185 repBC186 repBC187 repBC188 repBC189 repBC19 repBC190 
-#          repBC191 repBC192 repBC20 repBC21 repBC22 repBC23 repBC24 repBC25 repBC26 repBC27 repBC28 
-#          repBC29 repBC30 repBC31 repBC32 repBC33 repBC34 repBC35 repBC36 repBC37 repBC38 repBC39 
-#          repBC40 repBC41 repBC42 repBC43 repBC44 repBC45 repBC46 repBC47 repBC48 repBC49 repBC50 
-#          repBC51 repBC52 repBC53 repBC54 repBC55 repBC56 repBC57 repBC58 repBC59 repBC60 repBC61 
-#          repBC62 repBC63 repBC64 repBC65 repBC66 repBC67 repBC68 repBC69 repBC70 repBC71 repBC72 
-#          repBC73 repBC74 repBC75 repBC76 repBC77 repBC78 repBC79 repBC80 repBC81 repBC82 repBC83 
-#          repBC84 repBC85 repBC86 repBC87 repBC88 repBC89 repBC90 repBC91 repBC92 repBC93 repBC94 
-#          repBC95 repBC96 repBC97 repBC98 repBC99"

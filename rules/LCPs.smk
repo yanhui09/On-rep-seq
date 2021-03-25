@@ -17,7 +17,6 @@ def aggregate_input1(wildcards):
 
 rule plotLCPs:
 	input:
-		#expand(OUTPUT_DIR + "/02_LCPs/{barcode}.txt", barcode=BARCODES)
 		aggregate_input1
 	output:
 		pdfResults=OUTPUT_DIR + "/02_LCPs/LCP_plots.pdf"		
@@ -51,6 +50,8 @@ rule plotLCPs:
 					#add label to barcode subplot
 					ax.text(0.9, 0.5, filelist[i].split("/")[-1].split(".")[0],
 						transform=ax.transAxes, ha="right")
+				    #remove ticks on the y axis
+					ax.set_yticks([]) 
 					
 					i += 1
 		#save figure to pdf				
@@ -72,7 +73,6 @@ rule peakPicker:
 		"""
 rule LCPsCluster:
 	input:
-		#expand(OUTPUT_DIR + "/02_LCPs/{barcode}.txt", barcode=BARCODES)
 		aggregate_input1
 	output:
 		ipynb=OUTPUT_DIR + "/02_LCPs/LCP_clustering_heatmaps.ipynb",
