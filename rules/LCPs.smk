@@ -1,6 +1,6 @@
 rule getLCPs:
 	input:
-		OUTPUT_DIR + "/01_porechopped_data/{barcode}_demultiplexed.fastq"
+		OUTPUT_DIR + "/01_guppy_data/{barcode}_demultiplexed.fastq"
 	output:
 		OUTPUT_DIR + "/02_LCPs/{barcode}.txt",
 	params:
@@ -9,9 +9,16 @@ rule getLCPs:
 		"""
 		cat {input} | awk '{{if(NR%4==2) print length($1)+0}}' | sort -n | uniq -c | sed "s/   //g" |  sed "s/  //g" | sed "s/^ *// " > {output}
 		"""
+
+def aggregate_input1(wildcards):
+    checkpoint_output = checkpoints.demultiplexing_1.get(**wildcards).output[0]
+    return expand(OUTPUT_DIR + "/02_LCPs/{barcode}.txt",
+           barcode = glob_wildcards(checkpoint_output + "/{barcode, repBC[0-9]+}").barcode)
+
 rule plotLCPs:
 	input:
-		expand(OUTPUT_DIR + "/02_LCPs/{barcode}.txt", barcode=BARCODES)
+		#expand(OUTPUT_DIR + "/02_LCPs/{barcode}.txt", barcode=BARCODES)
+		aggregate_input1
 	output:
 		pdfResults=OUTPUT_DIR + "/02_LCPs/LCP_plots.pdf"		
 	run:
@@ -24,7 +31,7 @@ rule plotLCPs:
 		filelist=sorted(input, key=lambda x: int(x.split('BC')[1].split(".")[0]))
 		nro=math.ceil(len(filelist)/3)
 		fig, axes = plt.subplots(nrows=nro, ncols=3, figsize=(12, 50), 
-			sharex=True, sharey=True)
+			sharex=True, sharey=False)
 		plt.xlim(0,3500)
 
 		#plot each barcode
@@ -65,7 +72,8 @@ rule peakPicker:
 		"""
 rule LCPsCluster:
 	input:
-		expand(OUTPUT_DIR + "/02_LCPs/{barcode}.txt", barcode=BARCODES)
+		#expand(OUTPUT_DIR + "/02_LCPs/{barcode}.txt", barcode=BARCODES)
+		aggregate_input1
 	output:
 		ipynb=OUTPUT_DIR + "/02_LCPs/LCP_clustering_heatmaps.ipynb",
 		html=OUTPUT_DIR + "/02_LCPs/LCP_clustering_heatmaps.html",

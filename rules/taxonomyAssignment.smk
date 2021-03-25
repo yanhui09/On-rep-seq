@@ -25,9 +25,16 @@ rule taxonomyAssignment:
 		touch {output.merged}
 		awk -F '\t' '{{print FILENAME " " $3}}' {output.taxonomy} | sort | uniq -c | sort -nr >> {params.taxonomy_final} 
 		"""
+
+def aggregate_input2(wildcards):
+    checkpoint_output = checkpoints.demultiplexing_1.get(**wildcards).output[0]
+    return expand(OUTPUT_DIR + "/03_LCPs_peaks/01_taxonomic_assignments/taxonomy_{barcode}.txt",
+           barcode = glob_wildcards(checkpoint_output + "/{barcode, repBC[0-9]+}").barcode)
+
 rule checkOutputs:
 	input:
-		expand(OUTPUT_DIR + "/03_LCPs_peaks/01_taxonomic_assignments/taxonomy_{barcode}.txt", barcode=BARCODES)
+		#expand(OUTPUT_DIR + "/03_LCPs_peaks/01_taxonomic_assignments/taxonomy_{barcode}.txt", barcode=BARCODES)
+	    aggregate_input2
 	output:
 		protected(OUTPUT_DIR + "/check.txt")
 	params:

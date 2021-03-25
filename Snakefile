@@ -6,17 +6,19 @@ import re
 # Config files
 #======================================================
 configfile: "config.yaml"
+wildcard_constraints:
+        barcode="repBC[0-9]+"
 
 #======================================================
 # Global variables
 #======================================================
 RULES_DIR = 'rules'
 BASECALLED_DIR = config["basecalled_dir"]
-BARCODES = config["barcodes"].split()
+#BARCODES = config["barcodes"].split()
 INPUT_DIR=config["basecalled_dir"].rstrip("/")
 OUTPUT_DIR=config["results_dir"].rstrip("/")
 WORKFLOW_DATA=OUTPUT_DIR + "/ON-rep-seq_DATA"
-SAMPLES,=glob_wildcards(INPUT_DIR + "/{sample}" + ".fastq")
+#SAMPLES,=glob_wildcards(INPUT_DIR + "/{sample}" + ".fastq")
 
 with open("scripts/logo.txt") as f:
     print(f.read())
