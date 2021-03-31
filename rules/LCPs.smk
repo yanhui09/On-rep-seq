@@ -84,7 +84,7 @@ rule LCPsCluster:
 		directory_data=temp(directory(OUTPUT_DIR+"/02_LCPs/r_saved_images")), 
 	params:
 		work_directory=OUTPUT_DIR + "/02_LCPs",
-		ipynb="runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.ipynb",
+        ipynb="runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps.ipynb",
         png1="runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps_clustering_heatmap_01.png",
         png2="runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps_clustering_heatmap_02.png",
         fl_pdf="runnable_jupyter_on-rep-seq_flowgrams_clustering_heatmaps_flowgrams_clustering_order.pdf",
@@ -96,7 +96,7 @@ rule LCPsCluster:
 		mkdir -p "{output.directory}"
 		cp "{params.work_directory}"/*.txt "{output.directory}"
 		find "{output.directory}" -size -{params.min_size}c -delete
-		Rscript -e "IRkernel::installspec()"
+        Rscript -e "IRkernel::installspec()"
         CLUSTSCRIPT="$(realpath ./scripts/LCpCluster.R)"
         ( cd "{params.work_directory}"; "$CLUSTSCRIPT" LCPsClusteringData/ "{params.ipynb}" )
 		mv "{params.work_directory}/{params.ipynb}" "{output.ipynb}"
