@@ -71,7 +71,7 @@ rule peakPicker:
 		touch {output.txt}
 		touch {output.pdf}
 		"""
-checkpoint LCPsCluster:
+rule LCPsCluster:
 	input:
 		aggregate_input1
 	output:
