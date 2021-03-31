@@ -103,7 +103,7 @@ rule LCPsCluster:
 		mv "{params.work_directory}/{params.png1}" "{output.png1}"
 		mv "{params.work_directory}/{params.png2}" "{output.png2}"
 		mv "{params.work_directory}/{params.fl_pdf}" "{output.fl_pdf}"
-		jupyter-nbconvert --to html --template full "{output.ipynb}" 
+		jupyter-nbconvert --to html --template full "{output.ipynb}"
 		"""
 #		mv "{output.directory_data}/"*.Rdata "{params.work_directory}/" ##This now stays in 02_LCPs/r_saved_images
 
